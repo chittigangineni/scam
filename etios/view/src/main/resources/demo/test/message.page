@@ -1,0 +1,32 @@
+<form id="sendform" action="${TINY_CONTEXT_PATH}/demo/test/sendMessage">
+    微信消息测试：请求地址包含除ACCESS_TOKEN以外的其他参数
+  <table border="1">
+  <tr>
+    <td>认证bean(非必输):</td>
+    <td><input type="text" name="certBean" value="${certBean}" size="100" /></td>
+  </tr>
+  <tr>
+    <td>请求地址:</td>
+    <td><input type="text" name="url" value="${url}" size="100" /></td>
+  </tr>
+  <tr>
+    <td>请求报文:</td>
+    <td><textarea name="content" rows="20" cols="100" />${content}</textarea></td>
+  </tr>
+  #if(result)
+  <tr>
+    <td>请求结果:</td>
+    <td><textarea name="result" rows="5" cols="100" />${result}</textarea></td>
+  </tr>
+  #end
+  <tr>
+    <td colspan="2" align="center" ><input type="submit" value="提交"><input type="button" value="重置" onclick="sendFormReset()" ></td>
+  </tr>
+  </table>
+</form>
+<script type="text/javascript">
+   function sendFormReset(){
+     document.getElementById("sendform").reset();
+   }
+   
+</script>

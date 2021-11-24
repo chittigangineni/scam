@@ -1,0 +1,7 @@
+#if(status=="init")
+欢迎访问机器人页面,输入文字即可对话，输入quit或exit退出
+#elseif(status=="ok")
+${answer}
+#else
+退出机器人菜单
+#end

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="commonEventHandler" scope="singleton"
+		class="car.demo.handler.CommonEventHandler">
+	</bean>
+
+	<bean id="textMessageHandler" scope="singleton"
+		class="car.demo.handler.TextMessageHandler">
+		<property name="templateRender" ref="templateRender"></property>
+		<property name="menuConfigManager" ref="menuConfigManager"></property>
+	</bean>
+
+	<bean id="imageMessageHandler" scope="singleton"
+		class="car.demo.handler.ImageMessageHandler">
+	</bean>
+
+	<bean id="voiceMessageHandler" scope="singleton"
+		class="car.demo.handler.VoiceMessageHandler">
+	</bean>
+
+	<bean id="videoMessageHandler" scope="singleton"
+		class="car.demo.handler.VideoMessageHandler">
+	</bean>
+
+	<bean id="shortVideoMessageHandler" scope="singleton"
+		class="car.demo.handler.ShortVideoMessageHandler">
+	</bean>
+
+	<bean id="locationMessageHandler" scope="singleton"
+		class="car.demo.handler.LocationMessageHandler">
+	</bean>
+
+	<bean id="linkMessageHandler" scope="singleton"
+	class="car.demo.handler.LinkMessageHandler">
+	</bean>
+
+
+</beans>

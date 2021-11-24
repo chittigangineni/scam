@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="weiXinConnector" scope="singleton"
+		class="org.tinygroup.weixin.impl.WeiXinConnectorDefault">
+		<property name="weiXinSender" ref="weiXinSender"></property>
+		<property name="weiXinReceiver" ref="weiXinReceiver"></property>
+		<property name="client" ref="weiXinClient"></property>
+		<property name="weiXinSessionManager" ref="weiXinSessionManager"></property>
+	</bean>
+
+	<bean id="weiXinSender" scope="singleton"
+		class="org.tinygroup.weixin.impl.WeiXinSenderDefault">
+		<property name="sendHandlerList">
+			<list>
+				<ref bean="createSignatureHandler" />
+				<ref bean="sendOutputParseHandler" />
+				<ref bean="errorResultHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="weiXinReceiver" scope="singleton"
+		class="org.tinygroup.weixin.impl.WeiXinReceiverDefault">
+		<property name="receiverHandlerList">
+			<list>
+				<ref bean="textMenuConfigHandler" />
+				<ref bean="voiceMenuConfigHandler" />
+				<ref bean="clickMenuConfigHandler" />
+				<ref bean="commonEventHandler" />
+				<ref bean="textMessageHandler" />
+				<ref bean="imageMessageHandler" />
+				<ref bean="voiceMessageHandler" />
+				<ref bean="videoMessageHandler" />
+				<ref bean="locationMessageHandler" />
+				<ref bean="shortVideoMessageHandler" />
+				<ref bean="receiveParseHandler" />
+				<ref bean="linkMessageHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="weiXinClient" scope="singleton" class="org.tinygroup.weixin.common.Client">
+		<property name="appId" value="公众号的应用ID"></property>
+		<property name="secret" value="公众号的应用秘钥"></property>
+		<property name="token" value="公众号的令牌串"></property>
+		<property name="encodeAseKey" value="公众号的AES秘钥"></property>
+		<property name="payToken" value="公众号的支付令牌串"></property>
+		<property name="checkSignature" value="false"></property>
+	</bean>
+
+	<bean id="weiXinSessionManager" scope="singleton"
+		class="org.tinygroup.weixin.impl.WeiXinSessionManagerDefault">
+		<!-- Session默认的生存时间，单位s,默认值0 -->
+		<constructor-arg index="0" type="int">
+			<value>0</value>
+		</constructor-arg>
+		<!-- Session清理线程首次延迟时间，单位s,默认值60 -->
+		<constructor-arg index="1" type="int">
+			<value>10</value>
+		</constructor-arg>
+		<!-- Session清理线程运行周期，单位s，默认值300 -->
+		<constructor-arg index="2" type="int">
+			<value>60</value>
+		</constructor-arg>
+
+		<property name="cacheManager" ref="jcsCacheManager"></property>
+		<property name="cacheRegion" value="weixinservice"></property>
+	</bean>
+
+</beans>

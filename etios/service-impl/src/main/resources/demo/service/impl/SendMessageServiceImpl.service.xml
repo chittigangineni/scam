@@ -1,0 +1,10 @@
+<service-components>
+  <service-component type="car.demo.service.impl.SendMessageServiceImpl" bean="sendMessageService">
+    <service-method local-name="sendMessage" service-id="sendMessage" method-name="sendMessage" cacheable="false" category="car.demo.service.impl">
+      <service-parameters>
+        <service-parameter name="request" type="car.demo.pojo.SendRequest" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="sendMessageResult" required="false" is-array="false" type="car.demo.pojo.SendResponse"/>
+    </service-method>
+  </service-component>
+</service-components>

@@ -1,0 +1,10 @@
+<service-components>
+  <service-component type="car.demo.service.impl.ReceiveMessageServiceImpl" bean="receiveMessageService">
+    <service-method local-name="receive" service-id="receive" method-name="receive" cacheable="false" category="car.demo.service.impl">
+      <service-parameters>
+        <service-parameter name="request" type="car.demo.pojo.ReceiveRequest" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="receiveResult" required="false" is-array="false" type="car.demo.pojo.ReceiveResponse"/>
+    </service-method>
+  </service-component>
+</service-components>

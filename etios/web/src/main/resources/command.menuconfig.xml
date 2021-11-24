@@ -1,0 +1,83 @@
+<!-- 菜单命令节点支持多个菜单配置节点和系统命令节点 -->
+<menu-configs>
+	<!-- 菜单配置节点可以嵌套，支持定义子菜单和菜单命令节点 -->
+	<menu-config id="m001" name="menu" title="功能目录" >
+		<regex><![CDATA[m|menu|菜单]]></regex>
+		<description><![CDATA[微信服务列表]]></description>
+		<menu-config id="g001" name="guess" title="数字竞猜" path="/game/guessNumber.page">
+			<regex><![CDATA[guess|猜数字]]></regex>
+			<description><![CDATA[猜数字小游戏,输入guess或者猜数字]]></description>
+			<menu-command name="new" title="新建游戏" event-type="enter"
+				class-name="org.tinygroup.weixinservice.commandhandler.NewGuessGameHandler">
+				<regex><![CDATA[new|新游戏]]></regex>
+				<description><![CDATA[输入“新游戏”或者“new”,重新开始猜数字]]></description>
+			</menu-command>
+			<menu-command name="input" title="输入数值"
+				class-name="org.tinygroup.weixinservice.commandhandler.GuessNumberHandler"
+				path="/game/guessNumberResult.page">
+				<regex><![CDATA[^[1-9]\d*$]]></regex>
+				<description><![CDATA[请输入1-50之间的整数]]></description>
+			</menu-command>
+			<menu-command name="del" title="清理用户数据" event-type="exit"
+				class-name="org.tinygroup.weixinservice.commandhandler.DelGuessNumberSessionHandler"
+				path="/menucommand/showMenuConfig.page">
+				<regex><![CDATA[del|delete]]></regex>
+				<description><![CDATA[输入del或者delete]]></description>
+			</menu-command>
+		</menu-config>
+		<menu-config id="g002" name="robot" title="机器人" >
+			<regex><![CDATA[robot]]></regex>
+			<description><![CDATA[输入robot]]></description>
+			<menu-command name="input" title="问答环节" event-type="enter"
+				system-enable="false" bean-name="askRobotHandler" path="/game/answer.page">
+				<regex><![CDATA[[\u4e00-\u9fa5_a-zA-Z0-9]+$]]></regex>
+				<description><![CDATA[向智能机器人进行提问]]></description>
+			</menu-command>
+		</menu-config>
+		<menu-config id="g003" name="time" title="时间转换">
+			<menu-command name="1" title="显示中式时间"
+				class-name="org.tinygroup.weixinservice.commandhandler.TimeHandler"
+				path="/game/chineseTime.page">
+				<regex><![CDATA[1]]></regex>
+				<description><![CDATA[输入1展示中式时间]]></description>
+			</menu-command>
+			<menu-command name="2" title="显示英式时间"
+				class-name="org.tinygroup.weixinservice.commandhandler.TimeHandler"
+				path="/game/englishTime.page">
+				<regex><![CDATA[2]]></regex>
+				<description><![CDATA[输入2展示英式时间]]></description>
+			</menu-command>
+			<regex><![CDATA[time]]></regex>
+			<description><![CDATA[展示中式和英式的系统时间]]></description>
+		</menu-config>
+	</menu-config>
+	<!-- 系统命令节点 -->
+	<system-command name="root" title="返回根菜单" bean-name="homeCommandHandler"
+		path="/menucommand/showMenuConfig.page">
+		<regex><![CDATA[root]]></regex>
+		<description>输入root返回菜单的最上级</description>
+	</system-command>
+	<system-command name="up" title="回到上一级" bean-name="backCommandHandler"
+		path="/menucommand/showMenuConfig.page">
+		<regex><![CDATA[up]]></regex>
+		<description>输入up,回到当前菜单的上一级</description>
+	</system-command>
+	<system-command name="list" title="列出子列表" bean-name="queryCommandHandler"
+		path="/menucommand/query.page">
+		<regex><![CDATA[list|list\s+[\u4e00-\u9fa5_a-zA-Z0-9]+$]]></regex>
+		<description>列出系统命令和当前菜单的列表，支持“list 关键字”的方式</description>
+	</system-command>
+	<system-command name="help" title="显示详情" bean-name="helpCommandHandler"
+		path="/menucommand/help.page">
+		<regex><![CDATA[help|help\s+[\u4e00-\u9fa5_a-zA-Z0-9]+$]]></regex>
+		<description>列出命令详情</description>
+	</system-command>
+	<system-command name="exit" title="退出菜单" bean-name="exitCommandHandler"
+		path="/menucommand/exit.page">
+		<regex><![CDATA[exit]]></regex>
+		<description>输入exit退出菜单</description>
+	</system-command>
+</menu-configs>
+
+
+

@@ -1,0 +1,6 @@
+输入m或者menu进入菜单
+
+菜单系统命令:
+#for(systemCommand:systemCommandList)
+${systemCommand?.name.fill(6)}${systemCommand?.title}#eol
+#end

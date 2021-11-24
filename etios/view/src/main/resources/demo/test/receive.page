@@ -1,0 +1,29 @@
+<form id="receiveForm" action="${TINY_CONTEXT_PATH}/demo/test/receiveMessage">
+    微信推送消息测试
+  <table border="1">
+  <tr>
+    <td>时间戳(密文模式):</td>
+    <td><input type="text" name="timestamp" value="${timestamp}" size="100" /></td>
+  </tr>
+  <tr>
+    <td>随机串(密文模式):</td>
+    <td><input type="text" name="nonce" value="${nonce}" size="100" /></td>
+  </tr>
+  <tr>
+    <td>请求报文:</td>
+    <td><textarea name="content" rows="20" cols="100" />${content}</textarea></td>
+  </tr>
+  #if(result)
+  <tr>
+    <td>请求结果:</td>
+    <td><textarea name="result" rows="5" cols="100" />${result}</textarea></td>
+  </tr>
+  #end
+  <tr>
+    <td colspan="2" align="center" ><input type="submit" value="提交"></td>
+  </tr>
+  </table>
+</form>
+<script type="text/javascript">
+   
+</script>

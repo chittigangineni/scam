@@ -1,0 +1,10 @@
+<service-components>
+  <service-component type="car.demo.service.impl.WeiXinUploadServiceImpl" bean="weiXinUploadService">
+    <service-method local-name="upload" service-id="upload" method-name="upload" cacheable="false" category="car.demo.service.impl">
+      <service-parameters>
+        <service-parameter name="request" type="car.demo.pojo.UploadRequest" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="uploadResult" required="false" is-array="false" type="car.demo.pojo.UploadResponse"/>
+    </service-method>
+  </service-component>
+</service-components>
